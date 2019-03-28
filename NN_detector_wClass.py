@@ -28,7 +28,7 @@ net = cv2.dnn.readNetFromCaffe(args["prototxt"], args["model"])
 
 class Camera:	
 	
-	def __init__(self, name, IP):
+	def __init__(self, name, IP):  #Testa sinal, inicia VideoCapture
 		self.name = name
 		self.ip = IP
 		self.pessoas = 0
@@ -40,7 +40,7 @@ class Camera:
 		except:
 			self.sinal = False
 		
-	def tem_sinal(self):
+	def tem_sinal(self):  #Testa sinal
 		try:
 			self.vs = VideoStream(self.ip).start()
 			frame = self.vs.read()
@@ -51,7 +51,7 @@ class Camera:
 		print('sinal checado')
 
 	
-	def quantas_pessoas(self):	
+	def quantas_pessoas(self):	#Quantas Pessoas
 #		print("[INFO] starting video stream...")
 		frame = self.vs.read()
 		frame = imutils.resize(frame, width = 400)
@@ -76,7 +76,7 @@ class Camera:
 #		print(self.pessoas)
 
 
-	def tem_gente(self):
+	def tem_gente(self):  #return True or False
 		if self.sinal:
 			self.quantas_pessoas()
 			if self.pessoas != 0:
