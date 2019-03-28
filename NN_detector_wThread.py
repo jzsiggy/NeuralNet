@@ -43,7 +43,7 @@ class Camera(threading.Thread):
 			self.sinal = False
 		
 	
-	def run(self):
+	def run(self):  #thread
 		if self.sinal:	
 			while True:
 				frame = self.vs.read()

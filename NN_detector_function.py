@@ -35,7 +35,7 @@ def tem_sinal(IP):	#Se nao houver sinal da camera, returns False
 		return False
 
 
-def Tem_gente(IP):	
+def Tem_gente(IP):	#
 	print("[INFO] starting video stream...")
 	#vs = VideoStream(0).start()	#COMPUTERCAM
 	vs = VideoStream(IP).start()	#IPCAM
