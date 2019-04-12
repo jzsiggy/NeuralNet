@@ -4,6 +4,7 @@ import argparse
 import imutils
 import time
 import cv2 
+import requests
 
 
 ap = argparse.ArgumentParser()
@@ -88,18 +89,24 @@ class Camera:
 
 
 def output(*args):
+	payload={}
 	for arg in args:
 		arg.tem_gente()	
-		print((arg.name) + ': ' + str(arg.estado))
+#		print((arg.name) + ': ' + str(arg.estado))
+		payload[arg.name]=arg.estado
+#	print(payload)
+	r = requests.post('http://192.168.15.23:8080/cam', data=payload)
+	print(r.url)
+	print(r.text)
 
 
 camera0 = Camera('camera0', 0)
-camera1 = Camera('camera1', 'http://10.102.3.105:8888/video')
-camera2 = Camera('Camera2', 'http://10.102.3.123:8080/video')
+#camera1 = Camera('camera1', 'http://10.102.3.105:8888/video')
+#camera2 = Camera('Camera2', 'http://10.102.3.123:8080/video')
 
 while True:
-	time.sleep(0)
-	output(camera0, camera1, camera2)
+	time.sleep(1)
+	output(camera0)
 
 #timeout
 #	if key == ord("q"):

@@ -4,7 +4,8 @@ import numpy as np
 import argparse
 import imutils
 import time
-import cv2  
+import cv2
+import requests
 
 
 ap = argparse.ArgumentParser()
@@ -62,6 +63,13 @@ while True:
 				cv2.putText(frame, label, (startX, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
 
 	print(count)
+
+	try:
+		payload = {'cam0': count}          # Send request to server
+		r = requests.post('http://127.0.0.1:8080/cam', data=payload)
+	except:
+		break
+		
 	cv2.imshow("Frame", frame)
 
 	key = cv2.waitKey(1) & 0xFF
