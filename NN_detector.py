@@ -68,7 +68,8 @@ while True:
 		payload = {'cam0': count}          # Send request to server
 		r = requests.post('http://127.0.0.1:8080/cam', data=payload)
 	except:
-		break
+		print('[NOT CONNECTED TO SOCKET]')
+		pass
 		
 	cv2.imshow("Frame", frame)
 
